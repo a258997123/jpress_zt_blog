@@ -882,6 +882,30 @@ function initCkEdtiorComponent() {
 function initCkEdtior(selector) {
     ClassicEditor
         .create(document.querySelector(selector), {
+            codeBlock: {
+                languages: [
+                    { language: 'plaintext', label: 'Plain text', class: '' },
+
+                    { language: 'php', label: 'PHP' },
+                    { language: 'javascript', label: 'JavaScript',  },
+                    { language: 'typescript', label: 'TypeScript',  },
+                    { language: 'python', label: 'Python' },
+                    { language: 'c', label: 'C' },
+                    { language: 'cpp', label: 'C++' },
+                    { language: 'css', label: 'CSS' },
+                    { language: 'html', label: 'HTML' },
+                    { language: 'go', label: 'Go' },
+                    { language: 'java', label: 'Java' },
+                    { language: 'shell', label: 'Shell' },
+                    { language: 'Kotlin', label: 'kotlin' },
+                    { language: 'groovy', label: 'Groovy' },
+                    { language: 'markdown', label: 'Markdown' },
+                    { language: 'json', label: 'JSON' },
+                    { language: 'sql', label: 'SQL' },
+                    { language: 'yaml', label: 'YAML' },
+                    { language: 'xml', label: 'XML' },
+                ]
+            },
             fontSize: {
                 options: [
                     9,
