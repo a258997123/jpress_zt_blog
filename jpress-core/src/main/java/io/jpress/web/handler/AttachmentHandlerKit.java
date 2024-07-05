@@ -16,6 +16,7 @@
 package io.jpress.web.handler;
 
 
+import com.jfinal.kit.LogKit;
 import com.jfinal.render.RenderManager;
 import io.jboot.utils.StrUtil;
 
@@ -42,13 +43,19 @@ public class AttachmentHandlerKit {
         try {
             isHandled[0] = true;
 
-            if (target.endsWith("/") || !target.contains(".") || target.toLowerCase().contains(".jsp")) {
+            if (target.endsWith("/") || !target.contains(".") || target.contains("..") || target.toLowerCase().contains(".jsp")) {
                 response.sendError(404);
                 return;
             }
 
             File file = new File(baseRoot, target);
-            if (!file.exists()) {
+            if (!file.exists() || file.isDirectory()) {
+                response.sendError(404);
+                return;
+            }
+
+            String canonicalPath = file.getCanonicalPath();
+            if (!canonicalPath.startsWith(baseRoot)) {
                 response.sendError(404);
                 return;
             }
@@ -59,7 +66,7 @@ public class AttachmentHandlerKit {
                     .render();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            LogKit.error(e.toString(), e);
         }
 
     }
