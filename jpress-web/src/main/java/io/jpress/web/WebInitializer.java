@@ -17,6 +17,7 @@ package io.jpress.web;
 
 import com.jfinal.template.Engine;
 import com.jfinal.template.source.FileSource;
+import com.jfinal.upload.UploadConfig;
 import io.jboot.core.listener.JbootAppListenerBase;
 import io.jpress.commons.wordsfilter.WordFilterUtil;
 import io.jpress.core.addon.controller.AddonControllerProcesser;
@@ -60,5 +61,8 @@ public class WebInitializer extends JbootAppListenerBase {
     @Override
     public void onStart() {
         WordFilterUtil.init();
+
+        //添加对支持 html 的上传支持
+        UploadConfig.addWhitelist("html");
     }
 }
