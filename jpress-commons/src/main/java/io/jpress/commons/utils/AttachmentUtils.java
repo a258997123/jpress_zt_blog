@@ -102,9 +102,9 @@ public class AttachmentUtils {
     }
 
     public static boolean isImage(String path) {
-        String sufffix = FileUtil.getSuffix(path);
-        if (StrUtil.isNotBlank(sufffix)) {
-            return imageSuffix.contains(sufffix.toLowerCase());
+        String suffix = FileUtil.getSuffix(path);
+        if (StrUtil.isNotBlank(suffix)) {
+            return imageSuffix.contains(suffix.toLowerCase());
         }
         return false;
     }
@@ -120,6 +120,7 @@ public class AttachmentUtils {
         unSafeFilesSuffix.add(".php");
         unSafeFilesSuffix.add(".html");
         unSafeFilesSuffix.add(".htm");
+        unSafeFilesSuffix.add(".svg");
         unSafeFilesSuffix.add(".css");
         unSafeFilesSuffix.add(".js");
         unSafeFilesSuffix.add(".exe");
@@ -130,9 +131,9 @@ public class AttachmentUtils {
     }
 
     public static boolean isUnSafe(File file) {
-        String sufffix = FileUtil.getSuffix(file.getName());
-        if (StrUtil.isNotBlank(sufffix)) {
-            return unSafeFilesSuffix.contains(sufffix.toLowerCase());
+        String suffix = FileUtil.getSuffix(file.getName());
+        if (StrUtil.isNotBlank(suffix)) {
+            return unSafeFilesSuffix.contains(suffix.toLowerCase()) || suffix.contains(":");
         }
         return false;
     }
